@@ -53,19 +53,19 @@ bool checkNeighbours(int row, int col, int n) {
     A Solution will be Valid if we place all queens and reached row == n so in this case we push our grid in the final answer.
 */
 
-void queenBackTrack(int n, int row = 0, int col = 0) {
+void queenBackTrack(int n, int row = 0) {
     if (row == n) {
         ans.push_back(back);
         return;
     }
-    for (int i = 0; i < n; i++) {
-        if (checkNeighbours(row, i, n)) {
+    for (int col = 0; col < n; col++) {
+        if (checkNeighbours(row, col, n)) {
             //Transition Of our function is to put queen or not.
-            back[row][i] = 'Q';
+            back[row][col] = 'Q';
             // Recursive Call to check the next Row
             queenBackTrack(n,row + 1);
             // BackTrack To find New Solutions
-            back[row][i] = '.';
+            back[row][col] = '.';
         }
     }
 }
